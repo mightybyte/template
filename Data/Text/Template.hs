@@ -50,7 +50,7 @@ module Data.Text.Template
 import Control.Applicative (Applicative(pure), (<$>))
 import Control.Monad (liftM, liftM2, replicateM_)
 import Control.Monad.State.Strict (State, evalState, get, put)
-import Data.Char (isAlphaNum, isLower)
+import Data.Char (isAlphaNum, isDigit, isLower)
 import Data.Function (on)
 import Data.Maybe (fromJust, isJust)
 import Data.Traversable (traverse)
@@ -262,7 +262,7 @@ pLit = do
     return $ Lit s
 
 isIdentifier0 :: Char -> Bool
-isIdentifier0 c = or [isLower c, c == '_']
+isIdentifier0 c = or [isDigit c, isLower c, c == '_']
 
 isIdentifier1 :: Char -> Bool
 isIdentifier1 c = or [isAlphaNum c, c `elem` "_'"]
